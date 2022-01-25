@@ -4,6 +4,7 @@ import android.content.ContentProvider
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import by.paulharokh.it.databinding.ActivityMapsBinding
@@ -21,10 +22,15 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var mMap: GoogleMap
     private lateinit var binding: ActivityMapsBinding
-    //private lateinit var servicesViewModel: ServicesViewModel
+    lateinit var receivedBannedS: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val arguments: Bundle? = intent.extras
+
+        receivedBannedS = arguments?.get("PREF S")?.toString().toString()
+
 
 
         binding = ActivityMapsBinding.inflate(layoutInflater)
@@ -52,9 +58,11 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         val pinsMapper: PinsMapper = gson.fromJson(jsonFileString, listPinType)
 
         for (element in pinsMapper.pins) {
-            val bufferLoc = LatLng(element.coordinates.lat, element.coordinates.lng)
-            val pinIdTitle = element.service + ": " + element.id.toString()
-            mMap.addMarker(MarkerOptions().position(bufferLoc).title(pinIdTitle))
+            if (!receivedBannedS.contains(element.service)) {
+                val bufferLoc = LatLng(element.coordinates.lat, element.coordinates.lng)
+                val pinIdTitle = element.service + ": " + element.id.toString()
+                mMap.addMarker(MarkerOptions().position(bufferLoc).title(pinIdTitle))
+            }
         }
 
     }
