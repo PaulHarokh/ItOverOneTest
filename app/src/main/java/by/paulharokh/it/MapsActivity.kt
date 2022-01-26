@@ -2,6 +2,7 @@ package by.paulharokh.it
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import by.paulharokh.it.databinding.ActivityMapsBinding
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -24,10 +25,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         super.onCreate(savedInstanceState)
 
         val arguments: Bundle? = intent.extras
-
         receivedBannedS = arguments?.get("PREF S")?.toString().toString()
-
-
+        Log.d("!!!map", receivedBannedS)
 
         binding = ActivityMapsBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -83,5 +82,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         val intent = Intent(this@MapsActivity, FilterActivity::class.java)
         intent.putExtra("ALL SERVICES", serviceString)
         startActivity(intent)
+        onBackPressed()
     }
+
 }

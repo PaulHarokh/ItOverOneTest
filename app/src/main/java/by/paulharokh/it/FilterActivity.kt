@@ -2,6 +2,7 @@ package by.paulharokh.it
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_filter.*
@@ -13,17 +14,17 @@ class FilterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_filter)
 
-        val arguments: Bundle = intent.extras!!
-        val receivedServiceS = arguments["ALL SERVICES"]
+        val services: Bundle = intent.extras!!
+        val receivedServiceS = services["ALL SERVICES"]
 
         val servicesArr = receivedServiceS.toString().toCharArray()
 
         for (i in servicesArr.indices) {
             val bufferAdaptedService = AdaptedService(servicesArr[i].toString(), true)
-            services.add(bufferAdaptedService)
+            this.services.add(bufferAdaptedService)
         }
 
-        rv_services_pref_id.adapter = ServiceAdapter(services, this)
+        rv_services_pref_id.adapter = ServiceAdapter(this.services, this)
         rv_services_pref_id.layoutManager = LinearLayoutManager(this)
     }
 
@@ -33,14 +34,15 @@ class FilterActivity : AppCompatActivity() {
         var bannedS = ""
 
         for (i in services.indices) {
-            if (!services[i].isChecked){
+            if (!services[i].isChecked) {
                 bannedS += services[i].name
             }
         }
 
         val intent = Intent(this@FilterActivity, MapsActivity::class.java)
-        intent.putExtra("PREF S",bannedS)
+        intent.putExtra("PREF S", bannedS)
         startActivity(intent)
+        onBackPressed()
 
     }
 
