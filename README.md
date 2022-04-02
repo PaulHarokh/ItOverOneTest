@@ -1,12 +1,13 @@
 # ItOverOneTest
 
-Есть одна опечатка? в json-файле задания: 
+used: Google Maps, GSON
 
-"services": [
-    "a",
-    "b",
-    "c"
-  ]
-  
-Как видно тут существуют только 3 сервиса но Пин под id 158 принадлежит сервису d.
-Во втором активити присутствуют только настройки по включению/отключению сервисов, выдаваемых json-ом, то есть только a,b,c
+displaying markers from local json with multiple sources on google map
+
+map
+
+<img alt="Map" src="/ReadMe images/map.PNG" />
+
+services
+
+<img alt="Serv" src="/ReadMe images/services.PNG" />
