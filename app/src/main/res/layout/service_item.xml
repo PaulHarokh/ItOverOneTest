@@ -9,7 +9,7 @@
         android:id="@+id/tv_service_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Service:"
+        android:text="@string/service"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -19,7 +19,6 @@
         android:id="@+id/tv_serv_name_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="X"
         app:layout_constraintStart_toEndOf="@id/tv_service_id"
         app:layout_constraintTop_toTopOf="@id/tv_service_id" />
 

@@ -1,14 +1,14 @@
 package by.paulharokh.it
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_filter.*
 
 class FilterActivity : AppCompatActivity() {
-    var services = mutableListOf<AdaptedService>()
+    private var services = mutableListOf<AdaptedService>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,6 +46,7 @@ class FilterActivity : AppCompatActivity() {
 
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun isBanned(adapterPosition: Int) {
         services[adapterPosition].isChecked = !services[adapterPosition].isChecked
         rv_services_pref_id.adapter?.notifyDataSetChanged()

@@ -26,7 +26,7 @@ class ServiceAdapter(
         return holder
     }
 
-    override fun onBindViewHolder(holder: ServiceAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.itemView.findViewById<TextView>(R.id.tv_serv_name_id).text = list[position].name
         holder.itemView.findViewById<CheckBox>(R.id.cb_service_id).isChecked =
             list[position].isChecked
